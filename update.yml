@@ -3,10 +3,6 @@
 - hosts: all
 
 
-  - name: Update all packages to the latest version
+  - name: update apt cache
     apt:
-     upgrade: dist
-
-  - name: Run the equivalent of "apt-get update" as a separate step
-    apt:
-      update_cache: yes
+       update_cache: yes
