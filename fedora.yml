@@ -5,8 +5,7 @@
   become: yes
   tasks:
     # Upgrade packages
-    - name: upgrade dnf packages
-      become: true
-      dnf:
-        upgrade: yes
-        update_cache: yes
+    - name: update all packages
+      command: /usr/bin/dnf -y upgrade
+      tags: update
+
