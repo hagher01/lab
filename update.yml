@@ -2,15 +2,15 @@
 
 - hosts: all
 
- - name: Upgrade all packages to the latest version
-   apt:
-    name: "*"
-    state: latest
+  - name: Upgrade all packages to the latest version
+    apt:
+     name: "*"
+     state: latest
 
- - name: Update all packages to the latest version
-   apt:
-    upgrade: dist
+  - name: Update all packages to the latest version
+    apt:
+     upgrade: dist
 
- - name: Run the equivalent of "apt-get update" as a separate step
-   apt:
-     update_cache: yes
+  - name: Run the equivalent of "apt-get update" as a separate step
+    apt:
+      update_cache: yes
