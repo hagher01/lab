@@ -5,8 +5,8 @@
   become: yes
   tasks:
     # Upgrade packages
-    - name: upgrade yum packages
+    - name: upgrade dnf packages
       become: true
-      yum:
+      dnf:
         upgrade: yes
         update_cache: yes
