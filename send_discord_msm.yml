@@ -1,6 +1,6 @@
 ---
 - name: Send a message to Discord
-  hosts: localhost
+  hosts: all
   tasks:
     - name: Send message via Discord webhook
       uri:
@@ -11,4 +11,4 @@
         body_format: json
         body:
           content: "Hello, this is a message from Ansible Semaphore!"
-      delegate_to: localhost
+      delegate_to: all
