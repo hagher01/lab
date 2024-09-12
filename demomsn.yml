@@ -1,0 +1,12 @@
+---
+
+- hosts: "{{ hosts }}"
+
+  become: yes
+  tasks:
+
+ - name: Send a message to the Discord channel
+   community.general.discord:
+     webhook_id: "https://discord.com/api/webhooks/1283614885661511712/hJ8nqs84PwRE4r5MSupsWcGy9nhSH8S73aif-Ks4sD3-jVZWT9uN0NqW0zIQ_AxSburc"
+     webhook_token: "hJ8nqs84PwRE4r5MSupsWcGy9nhSH8S73aif-Ks4sD3-jVZWT9uN0NqW0zIQ_AxSburc"
+     content: "This is a message from ansible"
