@@ -10,13 +10,13 @@
       shell: df -h / | awk 'NR==2 {print $5}'
       register: disk_usage
 
-      # Send Discord message when disk space is over 80%
+ # Send Discord message when disk space is over 80%
     - name: Send Discord message
       uri:
-        url: "{{ discord_webhook_url }}"
+        url: 
         method: POST
         body_format: json
-        body: '{"content": "Disk space on 480905716291600396 is above 80%!"}'
+        body: '{"content": "Disk space on {{ all }} is above 80%!"}'
         headers:
           Content-Type: application/json
         status_code: 204
