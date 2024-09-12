@@ -27,5 +27,5 @@
         headers:
           Content-Type: application/json
         status_code: 204
-      when: false
+      when: present
       #when: reboot_required.stat.exists
