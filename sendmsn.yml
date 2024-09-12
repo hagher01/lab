@@ -1,0 +1,25 @@
+- hosts: all
+  vars:
+    discord_webhook_url: "https://discord.com/api/webhooks/1283614885661511712/hJ8nqs84PwRE4r5MSupsWcGy9nhSH8S73aif-Ks4sD3-jVZWT9uN0NqW0zIQ_AxSburc/github"
+  tasks:
+    - name: Get disk usage for all mounted filesystems
+      command: df -h
+      register: disk_usage
+
+    - name: Show disk usage for debugging
+      debug:
+        msg: "{{ disk_usage.stdout_lines }}"
+
+    # Send Discord message with the state of all disks
+    - name: Send disk usage state to Discord
+      uri:
+        url: "{{ discord_webhook_url }}"
+        method: POST
+        body_format: json
+        body: |
+          {
+            "content": "Disk usage on {{ inventory_hostname }}:\n\n{{ disk_usage.stdout }}"
+          }
+        headers:
+          Content-Type: application/json
+        status_code: 204
