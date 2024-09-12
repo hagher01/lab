@@ -1,13 +1,13 @@
 ---
 
 - name: Send Discord Message
-  hosts: localhost
+  hosts: all
   vars:
     discord_webhook: "{{ discord_webhook_url_from_inventory }}"
     discord_name: 'Ansible Monitor'
 
   tasks:
     - include_role:
-        name: luther38.discord_webhook
+        name: hagher01.discord_webhook
       vars:
         discord_message: "This sends basic messages over to discord.  You can have multiple lines by using \n see?"
