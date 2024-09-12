@@ -1,26 +1,30 @@
 ---
 - hosts: all
 
+  become: yes
   tasks:
+    # Upgrade packages
+    - name: upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
 
-    - name: Get disk usage
-      command: df -h
-      register: disk_usage
+    # Check if reboot is required
+    - name: check if system reboot is required
+      become: true
+      stat:
+        path: /var/run/reboot-required
+      register: reboot_required
 
-    - name: Check disk space available
-      shell: df -h / | awk 'NR==2 {print $5}'
-      register: disk_usage
-
-    # Send Discord message when disk space is over 80%
+    # Send Discord message when reboot is required
     - name: Send Discord message
       uri:
-        url: "https://discord.com/api/webhooks/1283614885661511712/hJ8nqs84PwRE4r5MSupsWcGy9nhSH8S73aif-Ks4sD3-jVZWT9uN0NqW0zIQ_AxSburc"
+        url: "{{ discord_webhook_url }}"
         method: POST
         body_format: json
-        body: 
-          {
-            "content": "Disk usage on {{ inventory_hostname }}:\n\n{{ disk_usage.stdout }}"
-          }
+        body: '{"content": "Reboot required on {{ inventory_hostname }}"}'
         headers:
           Content-Type: application/json
         status_code: 204
+      when: reboot_required.stat.exists
