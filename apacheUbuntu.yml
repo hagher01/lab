@@ -1,0 +1,8 @@
+---
+
+ - hosts: all
+   becomre:  true
+   tasks: 
+      - name: install webserver
+        ansible.builting.package:
+         name: apache2
