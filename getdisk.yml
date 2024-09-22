@@ -14,8 +14,8 @@
 # sending a message
    - name: Send Hello World! to the webhook
      discord_webhook:
-      webhook_url: https://discord.com/api/webhooks/1283614885661511712/hJ8nqs84PwRE4r5MSupsWcGy9nhSH8S73aif-Ks4sD3-jVZWT9uN0NqW0zIQ_AxSburc/github
-      content: Hello, world!
+      webhook_url: "https://discord.com/api/webhooks/1283614885661511712/hJ8nqs84PwRE4r5MSupsWcGy9nhSH8S73aif-Ks4sD3-jVZWT9uN0NqW0zIQ_AxSburc/github"
+      content: "Hello, world!"
 
     
  # Send Discord message when disk space is over 80%
