@@ -10,14 +10,22 @@
       shell: df -h / | awk 'NR==2 {print $5}'
       register: disk_usage
 
+
+# sending a message
+- name: Send Hello World! to the webhook
+  discord_webhook:
+    webhook_url: https://canary.discordapp.com/api/webhooks/XXXXXXXXXXXXXXXXXX/XXXXXXXXXXXXXXXXXXXXX
+    content: Hello, world!
+
+    
  # Send Discord message when disk space is over 80%
-    - name: Send Discord message
-      uri:
-        url: 
-        method: POST
-        body_format: json
-        body: '{"content": "Disk space on {{ all }} is above 80%!"}'
-        headers:
-          Content-Type: application/json
-        status_code: 204
-      when: disk_usage.stdout[:-1]|int > 80
+   # - name: Send Discord message
+    #  uri:
+     #   url: 
+      #  method: POST
+       # body_format: json
+        #body: '{"content": "Disk space on {{ all }} is above 80%!"}'
+        #headers:
+         # Content-Type: application/json
+        #status_code: 204
+      #when: disk_usage.stdout[:-1]|int > 80
