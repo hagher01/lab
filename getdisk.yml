@@ -1,3 +1,4 @@
+
 - hosts: all
 
   tasks:
@@ -11,21 +12,16 @@
       register: disk_usage
 
 
-# sending a message
-   - name: Send Hello World! to the webhook
-     discord_webhook:
-      webhook_url: "https://discord.com/api/webhooks/1283614885661511712/hJ8nqs84PwRE4r5MSupsWcGy9nhSH8S73aif-Ks4sD3-jVZWT9uN0NqW0zIQ_AxSburc/github"
-      content: "Hello, world!"
 
     
- # Send Discord message when disk space is over 80%
-   # - name: Send Discord message
-    #  uri:
-     #   url: 
-      #  method: POST
-       # body_format: json
-        #body: '{"content": "Disk space on {{ all }} is above 80%!"}'
-        #headers:
-         # Content-Type: application/json
-        #status_code: 204
-      #when: disk_usage.stdout[:-1]|int > 80
+  Send Discord message when disk space is over 80%
+    - name: Send Discord message
+      uri:
+        url: 
+        method: POST
+        body_format: json
+        body: '{"content": "Disk space on {{ all }} is above 80%!"}'
+        headers:
+          Content-Type: application/json
+        status_code: 204
+      when: disk_usage.stdout[:-1]|int > 80
