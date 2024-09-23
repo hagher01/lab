@@ -1,0 +1,17 @@
+
+- hosts: all
+  tasks:
+
+    - name: Get disk space usage
+      shell: df -h / | awk 'NR==2 {print $5}'  # Get only the percentage usage of the root partition
+      register: disk_usage
+
+    - name: Send Discord message with disk space
+      uri:
+        url: "https://discord.com/api/webhooks/1283614885661511712/hJ8nqs84PwRE4r5MSupsWcGy9nhSH8S73aif-Ks4sD3-jVZWT9uN0NqW0zIQ_AxSburc/github"
+        method: POST
+        body_format: json
+        body: "{{ {'content': 'Disk space on {{ ansible_hostname }}: ' ~ disk_usage.stdout } }}"
+        headers:
+          Content-Type: application/json
+      delegate_to: localhost
