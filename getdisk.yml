@@ -14,14 +14,9 @@
 
 
     
-  Send Discord message when disk space is over 80%
-    - name: Send Discord message
-      uri:
-        url: 
-        method: POST
-        body_format: json
-        body: '{"content": "Disk space on {{ all }} is above 80%!"}'
-        headers:
-          Content-Type: application/json
-        status_code: 204
-      when: disk_usage.stdout[:-1]|int > 80
+    - hosts: localhost
+      roles:
+     - role: jtom38.ansible_discord_webhook
+       discord_webhook_url: 'your_discord_webhook_url'
+       discord_message: 'Server output: {{  disk_usage }}'
+      
