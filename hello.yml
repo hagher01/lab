@@ -1,12 +1,13 @@
 ---
-- name: Send message to Discord
+- name: Send message to Discord using webhook
   hosts: localhost
-  gather_facts: false
-  vars:
-    discord_webhook_url: 'https://discord.com/api/webhooks/1283614885661511712/hJ8nqs84PwRE4r5MSupsWcGy9nhSH8S73aif-Ks4sD3-jVZWT9uN0NqW0zIQ_AxSburc/github'
-
   tasks:
-    - name: Send message to Discord
-      community.general.discord:
-        webhook_url: '{{ discord_webhook_url }}'
-        message: 'Hello from Ansible!'
+    - name: Send Hello World to Discord
+      uri:
+        url: "https://discord.com/api/webhooks/1283614885661511712/hJ8nqs84PwRE4r5MSupsWcGy9nhSH8S73aif-Ks4sD3-jVZWT9uN0NqW0zIQ_AxSburc/github"
+        method: POST
+        headers:
+          Content-Type: "application/json"
+        body_format: json
+        body: "{{ {'content': 'Hello, World!'} }}"
+        status_code: 204
