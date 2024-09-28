@@ -1,6 +1,6 @@
 ---
 - name: Send message to Discord using webhook
-  hosts: localhost
+  hosts: all
   tasks:
     - name: Send Hello World to Discord
       uri:
