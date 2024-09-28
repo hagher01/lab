@@ -1,0 +1,12 @@
+---
+- name: Send message to Discord
+  hosts: localhost
+  gather_facts: false
+  vars:
+    discord_webhook_url: 'your_discord_webhook_url'
+
+  tasks:
+    - name: Send message to Discord
+      community.general.discord:
+        webhook_url: '{{ discord_webhook_url }}'
+        message: 'Hello from Ansible!'
