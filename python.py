@@ -9,7 +9,7 @@ async def anything(url):
      embed = discord.Embed(titLe="This is from a webhook!")
      await webhook.send (embed=embed, username="Richard Web")
 
-if _name.== "_main_":
+if _name__== "_main_":
   url = 'https://discord.com/api/webhooks/1283614885661511712/hJ8nqs84PwRE4r5MSupsWcGy9nhSH8S73aif-Ks4sD3-jVZWT9uN0NqW0zIQ_AxSburc/github'
 
   loop = asyncio.new_event_loop()
